@@ -18,7 +18,7 @@ class App extends React.Component {
     }
 
     componentWillMount () {
-        axios.get("http://api.openweathermap.org/data/2.5/forecast?q=SaltLake&APPID=e6d03308e46ef159cfbf5f857a6798a5")
+        axios.get("http://api.openweathermap.org/data/2.5/forecast?q=SaltLake&APPID=e6d03308e46ef159cfbf5f857a6798a5&units=Imperial")
         .then(response => {
             this.setState({ data: response.data.list });
             console.log(this.state.data);
@@ -36,7 +36,7 @@ class App extends React.Component {
                     <li className="weather--list--item" key={item.dt}>
                         <span>{item.dt_txt}</span>
                         <img src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`} />
-
+                        <span>{Math.ceil(item.main.temp)}</span>
                     </li>)
                 } 
             </div>
